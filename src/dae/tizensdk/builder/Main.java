@@ -190,8 +190,11 @@ public class Main {
             } else {
             	if(verboseMode) System.out.println("App Package created at: "+outputFile.getAbsolutePath());
             	File projectAppPackage = new File(projectFolder, outputFile.getName());
-        		FileUtils.copyFile(outputFile, projectAppPackage);
-            	if(verboseMode) System.out.println("Copied to: "+projectAppPackage.getAbsolutePath());
+            	
+            	if(!outputFile.getCanonicalPath().equals(projectAppPackage.getCanonicalPath())) {
+	        		FileUtils.copyFile(outputFile, projectAppPackage);
+	            	if(verboseMode) System.out.println("Copied to: "+projectAppPackage.getAbsolutePath());
+            	}
             }
 			
             if(verboseMode) System.out.println("Package is built.");
