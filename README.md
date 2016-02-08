@@ -10,7 +10,7 @@ When using this as a JAR Builder, these arguments might be useful as a template 
 -jar ${workspace_loc:/ProjectName/sdkb.jar}
 -i D:\Repos\TizenProject
 -w D:\Workspaces\Tizen
--t tizen.bat
+-t D:\tizen-sdk\tools\ide\bin\tizen.bat
 -o
 ```
 
