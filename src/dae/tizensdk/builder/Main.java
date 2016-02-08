@@ -5,6 +5,7 @@ import java.io.FileFilter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -159,9 +160,13 @@ public class Main {
 
             if(verboseMode) System.out.println("Building package.");
             
-            String commandToTizen = "tizen.bat package -t wgt -s "+profileName+" -- \""+tempDirectory.getAbsolutePath()+"\"";
+            String commandToTizen = "package -t wgt -s "+profileName+" -- \""+tempDirectory.getAbsolutePath()+"\"";
             
-            ProcessBuilder pb = new ProcessBuilder(commandToTizen.split(" "));
+            List<String> commandParameters = new ArrayList<>();
+            commandParameters.add(tizenCli.getAbsolutePath());
+            commandParameters.addAll(Arrays.asList(commandToTizen.split(" ")));
+            
+            ProcessBuilder pb = new ProcessBuilder(commandParameters.toArray(new String[commandParameters.size()]));
             Process p = pb.start();
             try {
 				p.waitFor();
