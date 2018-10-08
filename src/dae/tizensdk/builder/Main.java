@@ -144,7 +144,24 @@ public class Main {
 			FileUtils.copyDirectory(projectFolder, tempDirectory, new FileFilter() {
 				@Override
 				public boolean accept(File file) {
-					if(file.getName().endsWith(".jar")) return false;
+					if(file.getName().endsWith(".jar") ||
+							file.getName().startsWith(".")) return false;
+					
+					String[] badFiles = new String[] {
+//							".sdk_delta.info",
+//							"author-signature.xml",
+//							"signature1.xml",
+							".externalToolBuilders",
+							".settings", 
+//							".sign", 
+							".project", 
+//							".device_info", 
+							"oldconfig"
+					};
+
+					for(String str : badFiles) {
+						if(str.equalsIgnoreCase(file.getName())) return false;
+					}
 					
 					return true;
 				}
